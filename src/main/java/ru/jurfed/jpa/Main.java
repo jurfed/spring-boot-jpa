@@ -13,6 +13,7 @@ public class Main {
         ApplicationContext context = SpringApplication.run(Main.class);
         PersonJpa personJpa = context.getBean(PersonJpa.class);
 
+
         Person person = personJpa.findById(1).get();
         System.out.println(person);
 
