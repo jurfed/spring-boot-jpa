@@ -1,7 +1,10 @@
 package ru.jurfed.jpa.repositories;
 
 import org.springframework.stereotype.Repository;
+import ru.jurfed.jpa.models.Email;
 import ru.jurfed.jpa.models.Person;
+import ru.jurfed.jpa.models.Post;
+import ru.jurfed.jpa.models.PostComment;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,8 +24,13 @@ public class PersonJpaImpl implements PersonJpa{
     }
 
     @Override
+    public Optional<Email> findMailById(int id) {
+        return Optional.ofNullable(em.find(Email.class,id));
+    }
+
+    @Override
     public List<Person> findAll() {
-        List<Person> persons = em.createQuery("select persons from Person persons", Person.class).getResultList();
+        List<Person> persons = em.createQuery("select per from Person per", Person.class).getResultList();
         return persons;
     }
 
@@ -39,5 +47,32 @@ public class PersonJpaImpl implements PersonJpa{
         Person person = new Person();
         person.setName(name);
         em.persist(person);
+    }
+
+    @Transactional
+    @Override
+    public void testBook() {
+        Post post = new Post(1,"title 1");
+
+        post.getComments().add(
+                new PostComment("My first review", post.getId())
+        );
+        post.getComments().add(
+                new PostComment("My second review", post.getId())
+        );
+        post.getComments().add(
+                new PostComment("My third review", post.getId())
+        );
+        post.getComments().add(
+                new PostComment("My fourth review", post.getId())
+        );
+
+        em.persist(post);
+
+    }
+
+    @Override
+    public Optional<Post> findPostById(int id) {
+        return Optional.ofNullable(em.find(Post.class,id));
     }
 }

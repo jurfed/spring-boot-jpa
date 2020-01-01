@@ -3,6 +3,7 @@ package ru.jurfed.jpa.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 //@Data
@@ -16,7 +17,7 @@ public class Person {
     @Setter
     @Getter
     @SequenceGenerator(name = "person_seq_gen", sequenceName = "person_id_seq")
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "person_seq_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq_gen")
     @Column(name = "person_id")
     private int id;
 
@@ -30,6 +31,7 @@ public class Person {
     }
 
 
+
     @Override
     public String toString() {
         return "Person{" +
@@ -37,6 +39,4 @@ public class Person {
                 ", name='" + name + '\'' +
                 '}';
     }
-
-
 }
