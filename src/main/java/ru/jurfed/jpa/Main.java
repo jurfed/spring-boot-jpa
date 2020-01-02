@@ -3,13 +3,10 @@ package ru.jurfed.jpa;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import ru.jurfed.jpa.models.Email;
+import ru.jurfed.jpa.models.Address;
 import ru.jurfed.jpa.models.Person;
 import ru.jurfed.jpa.models.Post;
 import ru.jurfed.jpa.repositories.PersonJpa;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class Main {
@@ -31,7 +28,7 @@ public class Main {
         System.err.println("!!!!!!!!!! All Persons: " + personJpa.findAll());
 
 
-        Email email = personJpa.findMailById(1).get();
+        Address email = personJpa.findMailById(1).get();
         System.err.println("!!!!!!!!!!!!!!! EMail: " + email);
 
 

@@ -6,17 +6,18 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-public class Email {
+@Table(name = "Address")
+public class Address {
 
     @Id
     @Setter
     @Getter
-    @SequenceGenerator(name = "email_seq_gen", sequenceName = "email_id_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "email_seq_gen")
-    @Column(name = "emailid")
+    @SequenceGenerator(name = "addr_seq_gen", sequenceName = "addr_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "addr_seq_gen")
+    @Column(name = "addr_id")
     private int id;
 
-    @Column(name = "address")
+    @Column(name = "street")
     @Getter
     @Setter
     private String address;
@@ -27,9 +28,10 @@ public class Email {
     @JoinColumn(name = "personid", referencedColumnName = "person_id")
     private Person person;
 
+
     @Override
     public String toString() {
-        return "Email{" +
+        return "Address{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
                 ", person=" + person +

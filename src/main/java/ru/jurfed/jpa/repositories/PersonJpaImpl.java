@@ -1,7 +1,7 @@
 package ru.jurfed.jpa.repositories;
 
 import org.springframework.stereotype.Repository;
-import ru.jurfed.jpa.models.Email;
+import ru.jurfed.jpa.models.Address;
 import ru.jurfed.jpa.models.Person;
 import ru.jurfed.jpa.models.Post;
 import ru.jurfed.jpa.models.PostComment;
@@ -24,8 +24,8 @@ public class PersonJpaImpl implements PersonJpa{
     }
 
     @Override
-    public Optional<Email> findMailById(int id) {
-        return Optional.ofNullable(em.find(Email.class,id));
+    public Optional<Address> findMailById(int id) {
+        return Optional.ofNullable(em.find(Address.class,id));
     }
 
     @Override

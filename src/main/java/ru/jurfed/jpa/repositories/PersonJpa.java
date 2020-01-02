@@ -1,6 +1,6 @@
 package ru.jurfed.jpa.repositories;
 
-import ru.jurfed.jpa.models.Email;
+import ru.jurfed.jpa.models.Address;
 import ru.jurfed.jpa.models.Person;
 import ru.jurfed.jpa.models.Post;
 
@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface PersonJpa {
 
     Optional<Person> findById(int id);
-    Optional<Email> findMailById(int id);
+    Optional<Address> findMailById(int id);
     List<Person> findAll();
 
     void renamePerson(Person person, String name);

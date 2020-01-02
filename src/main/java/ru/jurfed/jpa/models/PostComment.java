@@ -13,20 +13,7 @@ public class PostComment {
  
     private String review;
 
-    @Column(name = "post_Id")
-    private int post_Id;
-
-    public int getPost_Id() {
-        return post_Id;
-    }
-
-    public void setPost_Id(int post_Id) {
-        this.post_Id = post_Id;
-    }
-
-    public PostComment() {
-
-    }
+    public PostComment() {}
 
     public PostComment( String review) {
         this.review = review;
@@ -34,7 +21,6 @@ public class PostComment {
 
     public PostComment( String review, int post_Id) {
         this.review = review;
-        this.post_Id = post_Id;
     }
 
 
@@ -59,9 +45,7 @@ public class PostComment {
         return "PostComment{" +
                 "id=" + id +
                 ", review='" + review + '\'' +
-                ", post_Id=" + post_Id +
                 '}';
     }
 
-    //Constructors, getters and setters removed for brevity
 }

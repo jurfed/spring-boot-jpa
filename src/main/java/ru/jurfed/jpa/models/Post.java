@@ -11,6 +11,7 @@ public class Post {
     @Id
     private int id;
 
+    @Column(name = "title")
     private String title;
 
     @OneToMany(
@@ -25,9 +26,7 @@ public class Post {
         this.title = title;
     }
 
-    public Post() {
-
-    }
+    public Post() {}
 
     public int getId() {
         return id;
