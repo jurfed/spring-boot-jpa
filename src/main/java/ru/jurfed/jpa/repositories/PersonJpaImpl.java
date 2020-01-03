@@ -105,7 +105,7 @@ public class PersonJpaImpl implements PersonJpa {
     @Transactional
     @Override
     public void nativeSqlQuery() {
-        String query = "insert into mail(mail_id, mail_name) values (nextval('mail_seq_id'),'Marfusha!')";
+        String query = "insert into mail(mail_name) values ('Marfusha!')";
         em.createNativeQuery(query).executeUpdate();
         System.out.println();
     }

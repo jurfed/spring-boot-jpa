@@ -12,8 +12,7 @@ public class Address {
     @Id
     @Setter
     @Getter
-    @SequenceGenerator(name = "addr_seq_gen", sequenceName = "addr_id_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "addr_seq_gen")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "addr_id")
     private int id;
 

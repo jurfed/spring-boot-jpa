@@ -18,7 +18,7 @@ public class Mail {
 
     @Id
     @SequenceGenerator(name = "mail_seq", sequenceName = "mail_seq_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mail_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mail_id")
     private int mailId;
 
