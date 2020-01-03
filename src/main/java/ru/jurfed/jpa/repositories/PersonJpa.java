@@ -27,4 +27,6 @@ public interface PersonJpa {
 
     void removePerson();
 
+    void manyToManyAddPositionToPerson();
+
 }

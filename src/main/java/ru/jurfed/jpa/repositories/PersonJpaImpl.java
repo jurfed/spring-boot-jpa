@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -117,6 +118,24 @@ public class PersonJpaImpl implements PersonJpa {
         allMatchesQuery.setParameter("personName", "Jury");
         Person person = allMatchesQuery.getSingleResult();
         em.remove(person);
+    }
+
+    @Transactional
+    @Override
+    public void manyToManyAddPositionToPerson() {
+        TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.name = :personName", Person.class);
+        allMatchesQuery.setParameter("personName", "Kuzya");
+
+        Position pos1 = new Position("doctor");
+        em.persist(pos1);
+        Position pos2 = new Position("engener");
+        em.persist(pos2);
+
+
+        Person person = allMatchesQuery.getSingleResult();
+        person.setPositions(new HashSet(){{add(pos1); add(pos2);}});
+        em.merge(person);
+        System.err.println(person);
     }
 
 

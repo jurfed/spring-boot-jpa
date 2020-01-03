@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //@Data
 /*@NoArgsConstructor
@@ -45,6 +47,20 @@ public class Person {
         this.mails = mails;
     }
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "POSITIONS",
+            joinColumns = @JoinColumn(name = "person_id", nullable = true),
+            inverseJoinColumns = @JoinColumn(name = "pos_id",nullable = true))
+    Set<Position> positions;
+
+    public Set<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(Set<Position> positions) {
+        this.positions = positions;
+    }
 
     @Override
     public String toString() {
@@ -52,6 +68,7 @@ public class Person {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", mails=" + mails +
+                ", positions=" + positions +
                 '}';
     }
 }
