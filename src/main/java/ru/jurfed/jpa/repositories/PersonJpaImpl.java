@@ -91,15 +91,33 @@ public class PersonJpaImpl implements PersonJpa {
         System.err.println("old Person with two new mails!!!!!!!!!!!!!!!   " + person);
     }
 
+    @Override
+    @Transactional
+    public void addOneNewMailToOtherMailsForPerson() {
+        TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.name = :personName", Person.class);
+        allMatchesQuery.setParameter("personName", "Kuzya");
+        Person person = allMatchesQuery.getSingleResult();
+        person.getMails().add(new Mail("kuzy@yandex.ru"));
+        em.merge(person);
+        System.err.println("Added one new mail to other mails for Kuzya: " + person);
+    }
+
     @Transactional
     @Override
     public void nativeSqlQuery() {
         String query = "insert into mail(mail_id, mail_name) values (nextval('mail_seq_id'),'Marfusha!')";
-
         em.createNativeQuery(query).executeUpdate();
-
         System.out.println();
-
     }
+
+    @Transactional
+    @Override
+    public void removePerson() {
+        TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.name = :personName", Person.class);
+        allMatchesQuery.setParameter("personName", "Jury");
+        Person person = allMatchesQuery.getSingleResult();
+        em.remove(person);
+    }
+
 
 }

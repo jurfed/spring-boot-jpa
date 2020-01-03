@@ -21,6 +21,10 @@ public interface PersonJpa {
 
     void addNewMailsToOldPerson();
 
+    void addOneNewMailToOtherMailsForPerson();
+
     void nativeSqlQuery();
+
+    void removePerson();
 
 }

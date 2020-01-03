@@ -18,7 +18,7 @@ public class Main {
         Person person = personJpa.findById(1).get();
         System.err.println("!!!!!!!!!!!!!!! Person: " + person);
 
-        personJpa.renamePerson(person,"Kuzya");
+        personJpa.renamePerson(person, "Kuzya");
         System.err.println("!!!!!!!! Renamed Person: " + person);
 
         personJpa.addPerson("Gleb");
@@ -31,14 +31,30 @@ public class Main {
         System.err.println("!!!!!!!!!!!!!!! EMail: " + email);
 
 
-
-/**
- * create new Person with new mails
- */
+        /**
+         * create new Person with new mails
+         */
         personJpa.addNewPersonWithNewMails();
+
+        /**
+         * add new Mails to old Person
+         */
         personJpa.addNewMailsToOldPerson();
+
+        /**
+         * add new Mails to other mails for Person Kuzya
+         */
+        personJpa.addOneNewMailToOtherMailsForPerson();
+
+        /**
+         * create native query
+         */
         personJpa.nativeSqlQuery();
 
+        /**
+         * remove Person
+         */
+        personJpa.removePerson();
     }
 
 }

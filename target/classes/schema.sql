@@ -43,7 +43,7 @@ create table post_comment(
 create table mail(
     mail_id integer primary key,
     mail_name varchar(255),
-    mail_person int references Person(person_id) null
+    mail_person int references Person(person_id)  ON DELETE CASCADE null
 );
 
 
