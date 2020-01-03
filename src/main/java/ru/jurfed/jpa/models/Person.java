@@ -9,7 +9,7 @@ import java.util.List;
 //@Data
 /*@NoArgsConstructor
 @AllArgsConstructor*/
-@Entity
+@Entity(name = "Person")
 @Table(name = "Person")
 public class Person {
 
@@ -30,6 +30,20 @@ public class Person {
         this.name = name;
     }
 
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = false, fetch = FetchType.EAGER/*, mappedBy = "post_Id"*/
+    )
+    @JoinColumn(name = "mail_person", referencedColumnName = "person_id")
+    private List<Mail> mails = new ArrayList<>();
+
+    public List<Mail> getMails() {
+        return mails;
+    }
+
+    public void setMails(List<Mail> mails) {
+        this.mails = mails;
+    }
 
 
     @Override
@@ -37,6 +51,7 @@ public class Person {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", mails=" + mails +
                 '}';
     }
 }

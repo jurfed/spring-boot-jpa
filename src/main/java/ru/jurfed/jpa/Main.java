@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import ru.jurfed.jpa.models.Address;
 import ru.jurfed.jpa.models.Person;
-import ru.jurfed.jpa.models.Post;
 import ru.jurfed.jpa.repositories.PersonJpa;
 
 @SpringBootApplication
@@ -32,11 +31,13 @@ public class Main {
         System.err.println("!!!!!!!!!!!!!!! EMail: " + email);
 
 
-        System.err.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
-        personJpa.testBook();
-        Post p = personJpa.findPostById(1).get();
-        System.err.println(p);
+/**
+ * create new Person with new mails
+ */
+        personJpa.addNewPersonWithNewMails();
+        personJpa.addNewMailsToOldPerson();
+        personJpa.nativeSqlQuery();
 
     }
 

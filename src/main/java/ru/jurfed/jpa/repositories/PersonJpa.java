@@ -2,7 +2,6 @@ package ru.jurfed.jpa.repositories;
 
 import ru.jurfed.jpa.models.Address;
 import ru.jurfed.jpa.models.Person;
-import ru.jurfed.jpa.models.Post;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,11 @@ public interface PersonJpa {
 
     void addPerson(String name);
 
-    void testBook();
 
-    public Optional<Post> findPostById(int id);
+    void addNewPersonWithNewMails();
+
+    void addNewMailsToOldPerson();
+
+    void nativeSqlQuery();
+
 }
