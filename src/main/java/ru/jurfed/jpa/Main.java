@@ -57,6 +57,8 @@ public class Main {
         personJpa.removePerson();
 
         personJpa.manyToManyAddPositionToPerson();
+
+        personJpa.manyToManyAddPositionToPerson2();
     }
 
 }

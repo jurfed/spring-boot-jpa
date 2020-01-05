@@ -133,7 +133,33 @@ public class PersonJpaImpl implements PersonJpa {
 
 
         Person person = allMatchesQuery.getSingleResult();
-        person.setPositions(new HashSet(){{add(pos1); add(pos2);}});
+        person.setPositions(new HashSet() {{
+            add(pos1);
+            add(pos2);
+        }});
+        em.merge(person);
+        System.err.println(person);
+    }
+
+    @Transactional
+    @Override
+    public void manyToManyAddPositionToPerson2() {
+        TypedQuery<Position> positionQuery = em.createQuery("select pos from position pos where pos.name = :posName", Position.class);
+        positionQuery.setParameter("posName", "doctor");//old postition
+        Position position = positionQuery.getSingleResult();
+
+
+        TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.name = :personName", Person.class);
+        allMatchesQuery.setParameter("personName", "Vasia");
+
+        Position position2 = new Position("cook");
+        em.persist(position2);
+
+        Person person = allMatchesQuery.getSingleResult();
+        person.setPositions(new HashSet() {{
+            add(position);
+            add(position2);
+        }});
         em.merge(person);
         System.err.println(person);
     }

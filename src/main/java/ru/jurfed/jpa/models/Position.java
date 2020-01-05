@@ -1,10 +1,12 @@
 package ru.jurfed.jpa.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "Position")
+@Entity(name = "position")
+@Table(name = "position")
 public class Position {
 
     public Position() {
@@ -28,7 +30,7 @@ public class Position {
     private String name;
 
     @ManyToMany(mappedBy = "positions")
-    Set<Person> personSet;
+    Set<Person> personSet = new HashSet();
 
     public Set<Person> getPersonSet() {
         return personSet;
@@ -59,7 +61,19 @@ public class Position {
         return "Position{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", personSet=" + personSet +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return name.equals(position.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

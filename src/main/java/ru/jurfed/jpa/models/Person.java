@@ -52,7 +52,7 @@ public class Person {
             name = "POSITIONS",
             joinColumns = @JoinColumn(name = "person_id", nullable = true),
             inverseJoinColumns = @JoinColumn(name = "pos_id",nullable = true))
-    Set<Position> positions;
+    Set<Position> positions = new HashSet();
 
     public Set<Position> getPositions() {
         return positions;

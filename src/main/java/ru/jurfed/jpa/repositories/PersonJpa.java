@@ -29,4 +29,5 @@ public interface PersonJpa {
 
     void manyToManyAddPositionToPerson();
 
+    void manyToManyAddPositionToPerson2();
 }
