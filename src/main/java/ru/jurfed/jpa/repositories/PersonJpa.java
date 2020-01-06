@@ -30,4 +30,6 @@ public interface PersonJpa {
     void manyToManyAddPositionToPerson();
 
     void manyToManyAddPositionToPerson2();
+
+    void renamePerson(String newName, int id);
 }

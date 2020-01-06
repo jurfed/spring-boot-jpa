@@ -59,6 +59,15 @@ public class Main {
         personJpa.manyToManyAddPositionToPerson();
 
         personJpa.manyToManyAddPositionToPerson2();
+
+        /**
+         * rename Person
+         */
+        personJpa.renamePerson("Ivan Zolotozvonov",1);
+        personJpa.renamePerson("Katerina Ivanova",2);
+        personJpa.renamePerson("Kesha Vislouhov",3);
+        personJpa.renamePerson("Bobik",-44);
+        personJpa.renamePerson("Martishka",-45);
     }
 
 }

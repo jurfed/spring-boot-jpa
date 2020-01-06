@@ -23,10 +23,13 @@ public class Person {
     @Column(name = "person_id")
     private int id;
 
-    @Setter
-    @Getter
+
     @Column(name = "person_name", nullable = false)
     private String name;
+
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;

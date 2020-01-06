@@ -164,5 +164,17 @@ public class PersonJpaImpl implements PersonJpa {
         System.err.println(person);
     }
 
+    @Transactional
+    @Override
+    public void renamePerson(String newName, int id) {
+
+        Person person = Optional.ofNullable(em.find(Person.class, id)).get();
+        person.setName(newName);
+//        em.merge(person);
+        em.persist(person);
+        System.out.println();
+
+    }
+
 
 }
