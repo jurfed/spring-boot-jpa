@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Repository
 public class PersonJpaImpl implements PersonJpa {
 
@@ -34,14 +35,14 @@ public class PersonJpaImpl implements PersonJpa {
         return persons;
     }
 
-    @Transactional
+    
     @Override
     public void renamePerson(Person person, String name) {
         person.setName(name);
         em.merge(person);
     }
 
-    @Transactional
+    
     @Override
     public void addPerson(String name) {
         Person person = new Person();
@@ -50,7 +51,7 @@ public class PersonJpaImpl implements PersonJpa {
     }
 
 
-    @Transactional
+    
     @Override
     public void addNewPersonWithNewMails() {
         List<Mail> mailList = new ArrayList<>();
@@ -71,7 +72,7 @@ public class PersonJpaImpl implements PersonJpa {
 
     }
 
-    @Transactional
+    
     @Override
     public void addNewMailsToOldPerson() {
         TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.id = :perId", Person.class);
@@ -93,7 +94,7 @@ public class PersonJpaImpl implements PersonJpa {
     }
 
     @Override
-    @Transactional
+    
     public void addOneNewMailToOtherMailsForPerson() {
         TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.name = :personName", Person.class);
         allMatchesQuery.setParameter("personName", "Kuzya");
@@ -103,7 +104,7 @@ public class PersonJpaImpl implements PersonJpa {
         System.err.println("Added one new mail to other mails for Kuzya: " + person);
     }
 
-    @Transactional
+    
     @Override
     public void nativeSqlQuery() {
         String query = "insert into mail(mail_name) values ('Marfusha!')";
@@ -111,7 +112,7 @@ public class PersonJpaImpl implements PersonJpa {
         System.out.println();
     }
 
-    @Transactional
+    
     @Override
     public void removePerson() {
         TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.name = :personName", Person.class);
@@ -120,7 +121,7 @@ public class PersonJpaImpl implements PersonJpa {
         em.remove(person);
     }
 
-    @Transactional
+    
     @Override
     public void manyToManyAddPositionToPerson() {
         TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.name = :personName", Person.class);
@@ -141,7 +142,7 @@ public class PersonJpaImpl implements PersonJpa {
         System.err.println(person);
     }
 
-    @Transactional
+    
     @Override
     public void manyToManyAddPositionToPerson2() {
         TypedQuery<Position> positionQuery = em.createQuery("select pos from position pos where pos.name = :posName", Position.class);
@@ -164,7 +165,7 @@ public class PersonJpaImpl implements PersonJpa {
         System.err.println(person);
     }
 
-    @Transactional
+    
     @Override
     public void renamePerson(String newName, int id) {
 
