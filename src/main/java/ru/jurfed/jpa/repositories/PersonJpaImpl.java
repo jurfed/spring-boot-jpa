@@ -3,9 +3,7 @@ package ru.jurfed.jpa.repositories;
 import org.springframework.stereotype.Repository;
 import ru.jurfed.jpa.models.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,8 +13,17 @@ import java.util.Optional;
 @Repository
 public class PersonJpaImpl implements PersonJpa {
 
-    @PersistenceContext
+    private EntityManagerFactory emf;
+
+    //    @PersistenceContext
     private EntityManager em;
+
+    @PersistenceUnit/*(unitName = "my-pu")*/
+    public void setEm(EntityManagerFactory emf) {
+        this.emf = emf;
+        em = emf.createEntityManager();
+
+    }
 
     @Override
     public Optional<Person> findById(int id) {
@@ -71,7 +78,7 @@ public class PersonJpaImpl implements PersonJpa {
 
     }
 
-    @Transactional
+    //    @Transactional
     @Override
     public void addNewMailsToOldPerson() {
         TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.id = :perId", Person.class);
@@ -88,26 +95,32 @@ public class PersonJpaImpl implements PersonJpa {
         mailList.add(mail2);
 
         person.setMails(mailList);
+        em.getTransaction().begin();
         em.merge(person);
+        em.getTransaction().commit();
         System.err.println("old Person with two new mails!!!!!!!!!!!!!!!   " + person);
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public void addOneNewMailToOtherMailsForPerson() {
         TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.name = :personName", Person.class);
         allMatchesQuery.setParameter("personName", "Kuzya");
         Person person = allMatchesQuery.getSingleResult();
         person.getMails().add(new Mail("kuzy@yandex.ru"));
+        em.getTransaction().begin();
         em.merge(person);
+        em.getTransaction().commit();
         System.err.println("Added one new mail to other mails for Kuzya: " + person);
     }
 
-    @Transactional
+    //    @Transactional
     @Override
     public void nativeSqlQuery() {
         String query = "insert into mail(mail_name) values ('Marfusha!')";
+        em.getTransaction().begin();
         em.createNativeQuery(query).executeUpdate();
+        em.getTransaction().commit();
         System.out.println();
     }
 
@@ -120,28 +133,34 @@ public class PersonJpaImpl implements PersonJpa {
         em.remove(person);
     }
 
-    @Transactional
+    //    @Transactional
     @Override
     public void manyToManyAddPositionToPerson() {
         TypedQuery<Person> allMatchesQuery = em.createQuery("select per from Person per where per.name = :personName", Person.class);
         allMatchesQuery.setParameter("personName", "Kuzya");
 
         Position pos1 = new Position("doctor");
+        em.getTransaction().begin();
         em.persist(pos1);
-        Position pos2 = new Position("engener");
-        em.persist(pos2);
+        em.getTransaction().commit();
 
+        Position pos2 = new Position("engener");
+        em.getTransaction().begin();
+        em.persist(pos2);
+        em.getTransaction().commit();
 
         Person person = allMatchesQuery.getSingleResult();
         person.setPositions(new HashSet() {{
             add(pos1);
             add(pos2);
         }});
+        em.getTransaction().begin();
         em.merge(person);
+        em.getTransaction().commit();
         System.err.println(person);
     }
 
-    @Transactional
+//    @Transactional
     @Override
     public void manyToManyAddPositionToPerson2() {
         TypedQuery<Position> positionQuery = em.createQuery("select pos from position pos where pos.name = :posName", Position.class);
@@ -153,14 +172,18 @@ public class PersonJpaImpl implements PersonJpa {
         allMatchesQuery.setParameter("personName", "Vasia");
 
         Position position2 = new Position("cook");
+        em.getTransaction().begin();
         em.persist(position2);
+        em.getTransaction().commit();
 
         Person person = allMatchesQuery.getSingleResult();
         person.setPositions(new HashSet() {{
             add(position);
             add(position2);
         }});
+        em.getTransaction().begin();
         em.merge(person);
+        em.getTransaction().commit();
         System.err.println(person);
     }
 
