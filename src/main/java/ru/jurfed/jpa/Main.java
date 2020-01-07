@@ -13,7 +13,7 @@ import ru.jurfed.jpa.repositories.PersonJpa;
 public class Main {
 
     public static void main(String[] args) throws JpqlExamplesImpl.InvalidNameException {
-        System.err.println("----------------------------SPRING BOOT DATA JPA----------------------------------");
+        System.err.println("----------------------------SPRING BOOT DATA JPA   /models/; /repositories/----------------------------------");
 
         ApplicationContext context = SpringApplication.run(Main.class);
         PersonJpa personJpa = context.getBean(PersonJpa.class);
@@ -70,11 +70,11 @@ public class Main {
         personJpa.renamePerson("Ivan Zolotozvonov",1);
         personJpa.renamePerson("Katerina Ivanova",2);
         personJpa.renamePerson("Kesha Vislouhov",3);
-        personJpa.renamePerson("Bobik",-44);
-        personJpa.renamePerson("Martishka",-45);
+        personJpa.renamePerson("Bobik",-43);
+        personJpa.renamePerson("Martishka",-44);
 
 
-        System.err.println("----------------------------JPQL & Transactional----------------------------------");
+        System.err.println("----------------------------JPQL & Transactional   /models/; /jpql/----------------------------------");
         JpqlExamples jpqlExamples = (JpqlExamples) context.getBean("jpql");
         jpqlExamples.readOnlyPerson("Bobik");
 
@@ -84,11 +84,12 @@ public class Main {
         jpqlExamples.checkedRollBack("Martishka");
 //        jpqlExamples.checkedRollBack("Bobik");
 
-        //get salary
+        //get salary to Integer.class; to Object[].class
         jpqlExamples.getSalary1();
 
-
+        // get name, salaru to NamesAndSalary.class
         jpqlExamples.getSalaryFromAnotherClass();
+        jpqlExamples.distinct();
     }
 
 }
