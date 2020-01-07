@@ -15,7 +15,8 @@ CREATE SEQUENCE person_id_seq START 1 INCREMENT 1;
 
 create table Person(
 person_id int primary key,
-person_name varchar(255)
+person_name varchar(255),
+salary int
 );
 
 create table Position(

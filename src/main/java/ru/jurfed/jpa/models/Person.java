@@ -27,12 +27,17 @@ public class Person {
     @Column(name = "person_name", nullable = false)
     private String name;
 
-    public String getName() {
-        return name;
+
+
+    @Column(name = "salary", nullable = true)
+    private int salary;
+
+    public int getSalary() {
+        return salary;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     @OneToMany(
@@ -63,6 +68,14 @@ public class Person {
 
     public void setPositions(Set<Position> positions) {
         this.positions = positions;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
