@@ -107,23 +107,24 @@ public class JpqlExamplesImpl implements JpqlExamples {
         typedQuery.getResultList().forEach(s -> System.err.println(s));
     }
 
-
-}
-
-class NamesAndSalary {
-    String name;
-    int salary;
-
-    public NamesAndSalary(String name, int salary) {
-        this.name = name;
-        this.salary = salary;
-    }
-
     @Override
-    public String toString() {
-        return "NamesAndSalary{" +
-                "name='" + name + '\'' +
-                ", salary=" + salary +
-                '}';
+    public void groupByMaxSalary() {
+        System.err.println("\nMax salary:");
+        TypedQuery<Integer> query2 = em.createQuery(
+                "SELECT max(p.salary) FROM Person p", Integer.class);
+        System.err.println(query2.getSingleResult());
+
+
+        System.err.println("\nCount:");
+        TypedQuery<Long> count = em.createQuery("select count(p) from Person p", Long.class);
+        System.err.println("Person counts: " + count.getSingleResult());
+
+        System.err.println("\nJoin:");
+        TypedQuery<Person> personQuery = em.createQuery("select p from Person p JOIN p.positions pos where pos=3", Person.class);
+        personQuery.getResultList().forEach(System.err::println);
     }
+
+
 }
+
+

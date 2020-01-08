@@ -70,8 +70,8 @@ public class Main {
         personJpa.renamePerson("Ivan Zolotozvonov",1);
         personJpa.renamePerson("Katerina Ivanova",2);
         personJpa.renamePerson("Kesha Vislouhov",3);
-        personJpa.renamePerson("Bobik",-43);
-        personJpa.renamePerson("Martishka",-44);
+        personJpa.renamePerson("Bobik",-42);
+        personJpa.renamePerson("Martishka",-43);
 
 
         System.err.println("----------------------------JPQL & Transactional   /models/; /jpql/----------------------------------");
@@ -90,6 +90,10 @@ public class Main {
         // get name, salaru to NamesAndSalary.class
         jpqlExamples.getSalaryFromAnotherClass();
         jpqlExamples.distinct();
+
+
+        //max, count, join
+        jpqlExamples.groupByMaxSalary();
     }
 
 }

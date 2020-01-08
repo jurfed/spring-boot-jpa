@@ -13,4 +13,6 @@ public interface JpqlExamples {
     void getSalaryFromAnotherClass();
 
     void distinct();
+
+    void groupByMaxSalary();
 }

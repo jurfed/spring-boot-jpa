@@ -32,13 +32,6 @@ public class Person {
     @Column(name = "salary", nullable = true)
     private int salary;
 
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
 
     @OneToMany(
             cascade = CascadeType.ALL,
@@ -62,6 +55,15 @@ public class Person {
             inverseJoinColumns = @JoinColumn(name = "pos_id",nullable = true))
     Set<Position> positions = new HashSet();
 
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
     public Set<Position> getPositions() {
         return positions;
     }
@@ -84,6 +86,7 @@ public class Person {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", mails=" + mails +
+                ", salary=" + salary +
                 ", positions=" + positions +
                 '}';
     }
