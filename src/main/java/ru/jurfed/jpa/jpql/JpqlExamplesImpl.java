@@ -124,6 +124,18 @@ public class JpqlExamplesImpl implements JpqlExamples {
         personQuery.getResultList().forEach(System.err::println);
     }
 
+    @Override
+    public void addressJoinPerson() {
+        System.err.println("\nAddress join person:");
+
+        TypedQuery<Object[]> query = em.createQuery("select adr.address, per.name from Address adr join adr.person per", Object[].class);
+        List<Object[]> results = query.getResultList();
+
+        results.forEach(objects -> {
+            System.err.println("Address: " + objects[0] + "   Person: " + objects[1]);
+        });
+    }
+
 
 }
 

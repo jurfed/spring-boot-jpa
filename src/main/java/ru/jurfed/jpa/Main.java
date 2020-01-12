@@ -94,6 +94,9 @@ public class Main {
 
         //max, count, join
         jpqlExamples.groupByMaxSalary();
+
+        //join address and Persoo
+        jpqlExamples.addressJoinPerson();
     }
 
 }

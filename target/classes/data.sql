@@ -8,3 +8,4 @@ insert into Position(position_name) values ('position 1');
 insert into Position(position_name) values ('position 2');
 
 insert into Address(street, personId) values ('Pushkinskaya street 23',1);
+insert into Address(street, personId) values ('Kuzminskaya 12',2);

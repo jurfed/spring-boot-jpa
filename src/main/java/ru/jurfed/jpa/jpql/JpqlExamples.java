@@ -15,4 +15,6 @@ public interface JpqlExamples {
     void distinct();
 
     void groupByMaxSalary();
+
+    void addressJoinPerson();
 }
