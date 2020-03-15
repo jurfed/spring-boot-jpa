@@ -10,23 +10,16 @@ import javax.persistence.*;
 public class Address {
 
     @Id
-/*    @Setter
-    @Getter*/
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "addr_id")
     private int id;
 
     @Column(name = "street")
-/*    @Getter
-    @Setter*/
     private String address;
 
-/*    @Getter
-    @Setter*/
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "personid", referencedColumnName = "person_id")
     private Person person;
-
 
     public String getAddress() {
         return address;
@@ -35,7 +28,6 @@ public class Address {
     public void setAddress(String address) {
         this.address = address;
     }
-
 
     public Person getPerson() {
         return person;

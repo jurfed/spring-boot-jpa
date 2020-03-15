@@ -18,7 +18,6 @@ public class Main {
         ApplicationContext context = SpringApplication.run(Main.class);
         PersonJpa personJpa = context.getBean(PersonJpa.class);
 
-
         Person person = personJpa.findById(1).get();
         System.err.println("!!!!!!!!!!!!!!! Person: " + person);
 
@@ -30,10 +29,8 @@ public class Main {
 
         System.err.println("!!!!!!!!!! All Persons: " + personJpa.findAll());
 
-
         Address email = personJpa.findMailById(1).get();
         System.err.println("!!!!!!!!!!!!!!! EMail: " + email);
-
 
         /**
          * create new Person with new mails
@@ -73,12 +70,9 @@ public class Main {
         personJpa.renamePerson("Bobik",-42);
         personJpa.renamePerson("Martishka",-43);
 
-
         System.err.println("----------------------------JPQL & Transactional   /models/; /jpql/----------------------------------");
         JpqlExamples jpqlExamples = (JpqlExamples) context.getBean("jpql");
         jpqlExamples.readOnlyPerson("Bobik");
-
-
 
         //roll back transaction if name = "Bobik"
         jpqlExamples.checkedRollBack("Martishka");
@@ -90,7 +84,6 @@ public class Main {
         // get name, salaru to NamesAndSalary.class
         jpqlExamples.getSalaryFromAnotherClass();
         jpqlExamples.distinct();
-
 
         //max, count, join
         jpqlExamples.groupByMaxSalary();

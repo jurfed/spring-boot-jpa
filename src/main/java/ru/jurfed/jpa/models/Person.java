@@ -16,22 +16,16 @@ import java.util.Set;
 public class Person {
 
     @Id
-/*    @Setter
-    @Getter*/
     @SequenceGenerator(name = "person_seq_gen", sequenceName = "person_id_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq_gen")
     @Column(name = "person_id")
     private int id;
 
-
     @Column(name = "person_name", nullable = false)
     private String name;
 
-
-
     @Column(name = "salary", nullable = true)
     private int salary;
-
 
     @OneToMany(
             cascade = CascadeType.ALL,
