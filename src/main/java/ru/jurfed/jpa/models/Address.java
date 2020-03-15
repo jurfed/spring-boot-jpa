@@ -10,19 +10,19 @@ import javax.persistence.*;
 public class Address {
 
     @Id
-    @Setter
-    @Getter
+/*    @Setter
+    @Getter*/
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "addr_id")
     private int id;
 
     @Column(name = "street")
-    @Getter
-    @Setter
+/*    @Getter
+    @Setter*/
     private String address;
 
-    @Getter
-    @Setter
+/*    @Getter
+    @Setter*/
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "personid", referencedColumnName = "person_id")
     private Person person;

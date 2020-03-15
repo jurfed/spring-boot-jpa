@@ -16,8 +16,8 @@ import java.util.Set;
 public class Person {
 
     @Id
-    @Setter
-    @Getter
+/*    @Setter
+    @Getter*/
     @SequenceGenerator(name = "person_seq_gen", sequenceName = "person_id_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq_gen")
     @Column(name = "person_id")
