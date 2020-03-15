@@ -9,10 +9,12 @@ import java.util.Optional;
 public interface PersonJpa {
 
     Optional<Person> findById(int id);
-    Optional<Address> findMailById(int id);
-    List<Person> findAll();
 
     void renamePerson(Person person, String name);
+
+    Optional<Address> findMailById(int id);
+
+    List<Person> findAll();
 
     void addPerson(String name);
 

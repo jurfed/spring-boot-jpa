@@ -25,6 +25,12 @@ public class PersonJpaImpl implements PersonJpa {
     }
 
     @Override
+    public void renamePerson(Person person, String name) {
+        person.setName(name);
+        em.merge(person);
+    }
+
+    @Override
     public Optional<Address> findMailById(int id) {
         return Optional.ofNullable(em.find(Address.class, id));
     }
@@ -33,12 +39,6 @@ public class PersonJpaImpl implements PersonJpa {
     public List<Person> findAll() {
         List<Person> persons = em.createQuery("select per from Person per", Person.class).getResultList();
         return persons;
-    }
-
-    @Override
-    public void renamePerson(Person person, String name) {
-        person.setName(name);
-        em.merge(person);
     }
 
     @Override
