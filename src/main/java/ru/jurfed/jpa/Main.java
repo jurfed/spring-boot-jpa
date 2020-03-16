@@ -27,10 +27,10 @@ public class Main {
         personJpa.addPerson("Gleb");
         personJpa.addPerson("Puk");
 
-        System.err.println("!!!!!!!!!! All Persons: " + personJpa.findAll());
-
         Address email = personJpa.findMailById(1).get();
         System.err.println("!!!!!!!!!!!!!!! EMail: " + email);
+
+        System.err.println("!!!!!!!!!! All Persons: " + personJpa.findAll());
 
         /**
          * create new Person with new mails
