@@ -31,7 +31,7 @@ public class Person {
             cascade = CascadeType.ALL,
             orphanRemoval = false, fetch = FetchType.EAGER/*, mappedBy = "post_Id"*/
     )
-    @JoinColumn(name = "mail_person", referencedColumnName = "person_id")
+    @JoinColumn(name = "mail_person_id", referencedColumnName = "person_id")
     private List<Mail> mails = new ArrayList<>();
 
     public List<Mail> getMails() {
@@ -45,8 +45,8 @@ public class Person {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "POSITIONS",
-            joinColumns = @JoinColumn(name = "person_id", nullable = true),
-            inverseJoinColumns = @JoinColumn(name = "pos_id",nullable = true))
+            joinColumns = @JoinColumn(name = "positions_person_id", nullable = true),
+            inverseJoinColumns = @JoinColumn(name = "positions_pos_id",nullable = true))
     Set<Position> positions = new HashSet();
 
 

@@ -25,9 +25,9 @@ position_name varchar(255)
 );
 
 create table positions(
- person_id int REFERENCES Person (person_id) ON UPDATE CASCADE,
- pos_id    int REFERENCES Position (position_id) ON UPDATE CASCADE ON DELETE CASCADE,
- CONSTRAINT positions_pkey PRIMARY KEY (pos_id, person_id)
+ positions_person_id int REFERENCES Person (person_id) ON UPDATE CASCADE,
+ positions_pos_id    int REFERENCES Position (position_id) ON UPDATE CASCADE ON DELETE CASCADE,
+ CONSTRAINT positions_pkey PRIMARY KEY (positions_person_id, positions_pos_id)
 );
 
 create table Address(
@@ -40,7 +40,7 @@ create table Address(
 create table mail(
     mail_id serial primary key,
     mail_name varchar(255),
-    mail_person int references Person(person_id)  ON DELETE CASCADE null
+    mail_person_id int references Person(person_id)  ON DELETE CASCADE null
 );
 
 
