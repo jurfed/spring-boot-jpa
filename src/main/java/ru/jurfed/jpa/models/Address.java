@@ -17,8 +17,7 @@ public class Address {
     @Column(name = "street")
     private String address;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "personid", referencedColumnName = "person_id")
+    @OneToOne(mappedBy = "address")
     private Person person;
 
     public String getAddress() {
@@ -42,7 +41,6 @@ public class Address {
         return "Address{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
-                ", person=" + person +
                 '}';
     }
 }

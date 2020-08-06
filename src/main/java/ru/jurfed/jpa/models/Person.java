@@ -27,6 +27,10 @@ public class Person {
     @Column(name = "salary", nullable = true)
     private int salary;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "addr_id")
+    private Address address;
+
     @OneToMany(
             cascade = CascadeType.ALL,
             orphanRemoval = false, fetch = FetchType.EAGER/*, mappedBy = "post_Id"*/
@@ -74,13 +78,21 @@ public class Person {
         this.name = name;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", mails=" + mails +
+                "name='" + name + '\'' +
                 ", salary=" + salary +
+                ", address=" + address +
+                ", mails=" + mails +
                 ", positions=" + positions +
                 '}';
     }
