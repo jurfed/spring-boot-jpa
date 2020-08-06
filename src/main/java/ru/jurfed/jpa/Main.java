@@ -74,9 +74,8 @@ public class Main {
         JpqlExamples jpqlExamples = (JpqlExamples) context.getBean("jpql");
         jpqlExamples.readOnlyPerson("Bobik");
 
-        //roll back transaction if name = "Bobik"
+        //roll back transaction if name = "Martishka"
         jpqlExamples.checkedRollBack("Martishka");
-//        jpqlExamples.checkedRollBack("Bobik");
 
         //get salary to Integer.class; to Object[].class
         jpqlExamples.getSalary1();

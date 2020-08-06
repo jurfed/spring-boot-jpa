@@ -37,13 +37,6 @@ public class JpqlExamplesImpl implements JpqlExamples {
 
     }
 
-
-    public class InvalidNameException extends Exception {
-        public InvalidNameException(String message) {
-            super(message);
-        }
-    }
-
     /**
      * roll back transaction if name="Bobik"
      *
@@ -52,17 +45,24 @@ public class JpqlExamplesImpl implements JpqlExamples {
      */
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = InvalidNameException.class)
     public void checkedRollBack(String name) throws InvalidNameException {
-        System.err.println("----------------------Read only transaction-------------------------------");
+        System.err.println("\n----------------------Roll back transaction-------------------------------");
         TypedQuery<Person> personResult = em.createQuery("select p from Person p where p.name = :pName", Person.class);
         personResult.setParameter("pName", name);
         Person person = personResult.getSingleResult();
         person.setName("name 1");
         em.persist(person);
-        if (name.equals("Bobik")) {
-            throw new InvalidNameException("wrong name");
+        if (name.equals("Martishka")) {
+//            throw new InvalidNameException("wrong name");
         }
 
     }
+
+    public class InvalidNameException extends Exception {
+        public InvalidNameException(String message) {
+            super(message);
+        }
+    }
+
 
     public void getSalary1() {
 
