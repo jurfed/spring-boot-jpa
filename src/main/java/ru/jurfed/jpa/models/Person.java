@@ -31,12 +31,11 @@ public class Person {
     @JoinColumn(name = "address_id", referencedColumnName = "addr_id")
     private Address address;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = false, fetch = FetchType.EAGER/*, mappedBy = "post_Id"*/
-    )
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "mail_person_id", referencedColumnName = "person_id")
     private List<Mail> mails = new ArrayList<>();
+
 
     public List<Mail> getMails() {
         return mails;
