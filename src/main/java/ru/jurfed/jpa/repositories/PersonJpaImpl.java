@@ -67,7 +67,6 @@ public class PersonJpaImpl implements PersonJpa {
         System.err.println("new Person with two new mails!!!!!!!!!!!!!!!   " + person);
 
     }
-
     
     @Override
     public void addNewMailsToOldPerson() {
